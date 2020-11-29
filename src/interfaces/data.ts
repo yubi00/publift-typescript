@@ -86,3 +86,5 @@ export interface ICreateFileDataResponse {
 }
 
 export type CreateFileDataResponse = TypedResponse<ICreateFileDataResponse>;
+
+export type StoreType = { [key: string]: Buffer };

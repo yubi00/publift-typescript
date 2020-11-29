@@ -6,6 +6,7 @@ import { getData } from '../utils/getData';
 import { groupBy, avg, ratio } from '../utils/queries';
 import { formatDate } from '../utils/dates';
 import {
+  StoreType,
   FileDataResponse,
   CreateFileDataResponse,
   PageViewsResponse,
@@ -13,7 +14,7 @@ import {
   WeeklyMaxSessionsResponse
 } from '../interfaces/data';
 
-const store: any = {};
+const store: StoreType = {};
 
 const router: Router = Router();
 
