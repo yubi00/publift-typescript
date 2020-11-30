@@ -175,12 +175,16 @@ router.get(
 
 router.get('/api/:id', async (req: Request, res: FileDataResponse) => {
   const id = req.params.id;
+  const match = /^[0-9A-F]{8}-[0-9A-F]{4}-[4][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i.test(
+    id
+  );
   const files = Object.keys(store);
   try {
+    if (!match) throw new Error('Invalid id!');
     if (files.length === 0) throw new Error('No files yet');
 
     const fileExist = files.some((file) => file === id);
-    if (!fileExist) throw new Error('file doesnot exist');
+    if (!fileExist) throw new Error('Invalid id!');
 
     const data = await getData(store[id]);
 
@@ -193,7 +197,7 @@ router.get('/api/:id', async (req: Request, res: FileDataResponse) => {
   }
 });
 
-router.get('*', (req: Request, res: Response) => {
+router.use((req: Request, res: Response) => {
   res.status(404).send({
     status: false,
     error: 'Error 404 Page not found'
