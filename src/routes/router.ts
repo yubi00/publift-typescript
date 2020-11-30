@@ -14,7 +14,7 @@ import {
   WeeklyMaxSessionsResponse
 } from '../interfaces/data';
 
-const store: StoreType = {};
+export const store: StoreType = {};
 
 const router: Router = Router();
 
@@ -28,6 +28,10 @@ const upload: multer.Multer = multer({
     }
     cb(undefined, true);
   }
+});
+
+router.post('/api', (req, res) => {
+  res.send(req.body.name);
 });
 
 router.post(
